@@ -1,7 +1,7 @@
 
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
-import User from '../models/UserModel';
+import User from '../models/UserModel.js';
 
 const generateToken = (id) => {
     return jwt.sign({ id }, process.env.JWT_SECRET, { expiresIn: '7d' });
@@ -9,10 +9,12 @@ const generateToken = (id) => {
 
 export const register_user = async (req, res) => {
     try {
+        console.log(req.body,'body ')
         const { name, username, email, password } = req.body;
 
         const userExists = await User.findOne({ $or: [{ email }, { username }] });
         if (userExists) {
+            console.log('userexists')
             return res.status(400).json({ message: 'Email or username already taken' });
         }
 
