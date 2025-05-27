@@ -2,8 +2,8 @@ import mongoose from 'mongoose';
 
 const POST_TYPES = [
   'Recommendation',
-  'Needed help',
-  'Local update',
+  'Needed Help',
+  'Local Update',
   'Event'
 ];
 
@@ -23,11 +23,9 @@ const postSchema = new mongoose.Schema({
     type: {
       type: String,
       enum: ['Point'],
-      required: true
     },
     coordinates: {
       type: [Number],
-      required: true,
       validate: {
         validator: function (value) {
           return value.length === 2;
@@ -44,6 +42,7 @@ const postSchema = new mongoose.Schema({
     type: [String],   // Changed to array of strings (URLs or file paths)
     default: []
   },
+  avatar:{type:String,default:"https://res.cloudinary.com/ddcx6tsgg/image/upload/v1748279531/default_xlefjr.png"},
   comments: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Comment' }],
   likes: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }],
   dislikes: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }]

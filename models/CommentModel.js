@@ -7,7 +7,7 @@ const commentSchema = new mongoose.Schema({
   // Denormalized user info for fast reads
   username: { type: String, required: true },
   name: { type: String, required: true },
-
+    avatar:{type:String,default:"https://res.cloudinary.com/ddcx6tsgg/image/upload/v1748279531/default_xlefjr.png"},
   content: { type: String, required: true, maxlength: 280 },
   likes: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }],
   dislikes: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }]
